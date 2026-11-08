@@ -230,7 +230,7 @@ namespace Jurassic.Compiler
                         reflectionEmitInfo = new ReflectionEmitModuleInfo();
 
                         // Create a dynamic assembly and module.
-                        reflectionEmitInfo.AssemblyBuilder = System.Threading.Thread.GetDomain().DefineDynamicAssembly(
+                        reflectionEmitInfo.AssemblyBuilder = System.Reflection.Emit.AssemblyBuilder.DefineDynamicAssembly(
                             new System.Reflection.AssemblyName("Jurassic Dynamic Assembly"), System.Reflection.Emit.AssemblyBuilderAccess.Run);
 
                         // Mark the assembly as debuggable.  This must be done before the module is created.
@@ -243,7 +243,7 @@ namespace Jurassic.Compiler
                                 System.Diagnostics.DebuggableAttribute.DebuggingModes.Default }));
 
                         // Create a dynamic module.
-                        reflectionEmitInfo.ModuleBuilder = reflectionEmitInfo.AssemblyBuilder.DefineDynamicModule("Module", this.Options.EnableDebugging);
+                        reflectionEmitInfo.ModuleBuilder = reflectionEmitInfo.AssemblyBuilder.DefineDynamicModule("Module");
 
                         ReflectionEmitInfo = reflectionEmitInfo;
                     }
